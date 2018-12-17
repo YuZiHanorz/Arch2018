@@ -26,7 +26,7 @@ module cpu(
 // - 0x30004 read: read clocks passed since cpu starts (in dword, 4 bytes)
 // - 0x30004 write: indicates program stop (will output '\0' through uart tx)
 
-always @(posedge clk_in)
+/*always @(posedge clk_in)
   begin
     if (rst_in)
       begin
@@ -41,5 +41,19 @@ always @(posedge clk_in)
       
       end
   end
+
+endmodule*/
+	
+assign dbgreg_dout = 0;
+
+CPU_core core0(
+  .clk(clk_in),
+  .rst(rst_in),
+  .rdy(rdy_in),
+  .din(mem_din),
+  .addr(mem_a),
+  .dout(mem_dout),
+  .wr(mem_wr)
+);
 
 endmodule
